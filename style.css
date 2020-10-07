@@ -1,0 +1,106 @@
+*{
+    box-sizing: border-box;
+}
+h2{
+    text-align: center;
+}
+.formbox {
+    border:2px solid black;
+    width: 50%;
+}
+.row{
+    width: 95%;
+    margin: 10px;
+}
+.col-30{
+    float: left;
+    width: 25%;
+
+    /* background-color: red; */
+}
+.col-70{
+    float: left;
+    width: 70%;  
+}
+input{
+    border: 0p solid green;
+    width: 60%;
+    height: 4vh;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-radius: 0.4em;
+    padding: 0.5em;
+}
+.row:after{
+    content: '';
+    display: block;
+    clear:both;
+}
+
+.submitpart, a[href="touristplacelist.html"]{
+    float: right;
+}
+#reset{
+    background-color: rgb(235, 100, 16);
+    color:white;
+    margin-right: 0.25vw;
+}
+button[type="submit"], button[type="reset"]{
+    height: 4vh;
+    width: 4vw;
+}
+#submit{
+    background-color: rgb(108, 176, 65);
+    color:white;
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 4fr 4fr;
+    grid-template-rows: 1fr 4fr 4fr 4fr;
+    grid-gap: 2px;
+    background-color: white;
+    padding: 10px;
+    height: 40em;
+    width: 70%;
+}
+.details{
+    position: relative;
+    display: grid;
+    background-color: rgb(227, 195, 170);
+    place-items: center;
+}
+.details>img{
+    width: 65%;
+    height: 65%;
+}
+.heading{
+    display: grid;
+    background-color: black;
+    color: white;
+    place-items: center;
+}
+a[href="newtouristplace.html"]{
+    text-decoration: none;
+    color: white;
+}
+.addplacebtn{
+    background-color: blue;
+    margin: 10px;
+    padding: 7px;
+}
+.updatebtn{
+    position: absolute;
+    right: 5%;
+    padding: 0.6em;
+    background-color: rgb(0, 172, 9);
+    color: white
+}
+.deletebtn{
+    position: absolute;
+    right: 27%;
+    padding: 0.6em;
+    background-color: rgb(255, 65, 65);
+    color: white;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>  Add New Place </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="formbox">
+            <div class="formtitle">
+                <h2>Add a new Tourist place</h2>
+            </div>
+            <div class="form">
+                <form action="touristplacelist.html" method="GET" id="form">
+                    <div class="row">
+                        <div class="col-30">
+                            <label for="name">Name:</label>
+                        </div>
+                        <div class="col-70">
+                            <input type="text" id="name" class="name" name="name" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-30">
+                            <label for="adress">Address:</label>
+                        </div>
+                        <div class="col-70">
+                            <input type="text" id="address" class="address" name="address" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-30">
+                            <label for="rating">Rating:</label>
+                        </div>
+                        <div class="col-70">
+                            <input type="number" id="rating" class="rating" name="rating" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-30">
+                            <label for="picture">Picture:</label>
+                        </div>
+                        <div class="col-70">
+                            <input type="file" id="picture" class="picture" name="picture" accept="image/*" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="submitpart">
+                            <button type="reset" id="reset">Reset</button>
+                            <button type="submit" id="submit">Submit</button>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <a href="touristplacelist.html">Back to Tourist Place List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
