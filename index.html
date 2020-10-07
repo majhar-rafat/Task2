@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>  Add New Place </title>
+        <link rel="stylesheet" href="style.css">
+        <script async src="tweak.js"> </script>
+    </head>
+    <body>
+        <div class="formbox">
+            <div class="formtitle">
+                <h2>Add a new Tourist place</h2>
+            </div>
+            <div class="form">
+                <form action="touristplacelist.html" method="GET" id="form">
+                    <div class="row">
+                        <div class="col-30">
+                            <label for="name">Name:</label>
+                        </div>
+                        <div class="col-70">
+                            <input type="text" id="name" class="name" name="name" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-30">
+                            <label for="adress">Address:</label>
+                        </div>
+                        <div class="col-70">
+                            <input type="text" id="address" class="address" name="address" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-30">
+                            <label for="rating">Rating:</label>
+                        </div>
+                        <div class="col-70">
+                            <input type="number" id="rating" class="rating" name="rating" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-30">
+                            <label for="picture">Picture:</label>
+                        </div>
+                        <div class="col-70">
+                            <input type="file" id="picture" class="picture" name="picture" accept="image/*" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="submitpart">
+                            <button type="reset" id="reset" class="reset">Reset</button>
+                            <button type="submit" id="submit" class="submit">Submit</button>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <a href="touristplacelist.html" class="gotolistpage">Back to Tourist Place List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="list-view">
+            <div class="grid-container">
+                <div class="heading heading-name"> NAME </div>
+                <div class="heading heading-address"> ADDRESS </div>
+                <div class="heading heading-rating"> RATING </div>
+                <div class="heading heading-picture"> PICTURE </div>
+                <div class="heading heading-actions"> ACTIONS </div>
+                <div class="details details-name"> Sea Beach </div>
+                <div class="details details-address"> Cox's Bazar </div>
+                <div class="details details-rating"> 5 </div>
+                <div class="details details-image"> <img src="beach.jpg" alt="Sea Beach"></div>
+                <div class="details details-action">
+                    <button class="deletebtn">DELETE</button>
+                    <button class="updatebtn">UPDATE</button>
+                </div>
+                <div class="details details-name"> Sundarban </div>
+                <div class="details details-address"> Khulna </div>
+                <div class="details details-rating"> 4 </div>
+                <div class="details details-image"> <img src="tiger.jpg" alt="Royal Bengal Tiger"> </div>
+                <div class="details details-action">
+                    <button class="deletebtn">DELETE</button>
+                    <button class="updatebtn">UPDATE</button>
+                </div>
+                <div class="details details-name"> Hill View </div>
+                <div class="details details-address"> Khagrachori </div>
+                <div class="details details-rating"> 5 </div>
+                <div class="details details-image"> <img src="hill.jpg" alt="Hill View"> </div>
+                <div class="details details-action">
+                    <button class="deletebtn">DELETE</button>
+                    <button class="updatebtn">UPDATE</button>
+                </div>
+            </div>
+            <button class="addplacebtn">
+                <a href="newtouristplace.html" class="gotoformpage">Create New Tourist Place</a>
+            </button>
+        </div>
+    </body>
+</html>

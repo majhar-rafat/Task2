@@ -55,6 +55,9 @@ button[type="submit"], button[type="reset"]{
     background-color: rgb(108, 176, 65);
     color:white;
 }
+.list-view{
+    visibility: hidden;
+}
 .grid-container{
     display: grid;
     grid-template-columns: 2fr 2fr 1fr 4fr 4fr;
