@@ -17,7 +17,7 @@
                             <label for="name">Name:</label>
                         </div>
                         <div class="col-70">
-                            <input type="text" id="name" class="name" name="name" required>
+                            <input type="text" id="name" class="name" name="name" pattern="[A-Za-z]{1,30}" title="Only letters[A-Z a-z] allowed" required>
                         </div>
                     </div>
                     <div class="row">
@@ -33,7 +33,7 @@
                             <label for="rating">Rating:</label>
                         </div>
                         <div class="col-70">
-                            <input type="number" id="rating" class="rating" name="rating" required>
+                            <input type="number" id="rating" class="rating" name="rating" min="1" max="5" required>
                         </div>
                     </div>
                     <div class="row">
@@ -41,7 +41,7 @@
                             <label for="picture">Picture:</label>
                         </div>
                         <div class="col-70">
-                            <input type="file" id="picture" class="picture" name="picture" accept="image/*" required>
+                            <input type="file" id="picture" class="picture" name="picture" accept="image/,.jpg,.jpeg,.png" required>
                         </div>
                     </div>
                     <div class="row">
