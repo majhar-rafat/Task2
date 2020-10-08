@@ -11,13 +11,14 @@
                 <h2>Add a new Tourist place</h2>
             </div>
             <div class="form">
-                <form action="touristplacelist.html" method="GET" id="form">
+                <form method="POST" id="form" class="form">
                     <div class="row">
                         <div class="col-30">
                             <label for="name">Name:</label>
                         </div>
                         <div class="col-70">
-                            <input type="text" id="name" class="name" name="name" pattern="[A-Za-z]{1,30}" title="Only letters[A-Z a-z] allowed" required>
+                            <input type="text" id="name" class="name" name="name" pattern="[A-Za-z ]{1,30}" title="Only letters[A-Z a-z] allowed" required>
+                            <span class="invalid invalidname"></span>
                         </div>
                     </div>
                     <div class="row">
@@ -26,6 +27,7 @@
                         </div>
                         <div class="col-70">
                             <input type="text" id="address" class="address" name="address" required>
+                            <span class="invalid invalidaddress"></span>
                         </div>
                     </div>
                     <div class="row">
@@ -34,6 +36,7 @@
                         </div>
                         <div class="col-70">
                             <input type="number" id="rating" class="rating" name="rating" min="1" max="5" required>
+                            <span class="invalid invalidrating"></span>
                         </div>
                     </div>
                     <div class="row">
