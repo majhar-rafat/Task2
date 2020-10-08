@@ -1,7 +1,14 @@
-let places=[];
+let places=["Sea Beach", "Cox's Bazar", 5, "beach.jpg",
+"Sundarban", "Khulna", 4, "tiger.jpg",
+"Hill View", "Khagrachori", 5, "hill.jpg"];
+let rowString="50px";
 function makeListVisible(event)
 {
     if(document.querySelector('a.gotolistpage')===event.target){
+        event.preventDefault();
+    }
+    else if(document.querySelector('button#submit.submit')===event.target)
+    {
         event.preventDefault();
     }
     let grid=document.querySelector('.list-view');
@@ -10,6 +17,7 @@ function makeListVisible(event)
     formbox.style.display='none';
     grid.style.visibility='visible';
     grid.style.display='block';
+    addToGridView();
 }
 function makeFormVisible(event)
 {
@@ -26,34 +34,104 @@ function makeFormVisible(event)
 function addToGridView()
 {
     let gridContainer = document.querySelector('.grid-container');
-    gridContainer.style.gridTemplateRows+=' 4fr';
+    while(gridContainer.childElementCount)
+    {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
 
-    let divName= document.createElement('div');
-    divName.classList.add("details", "details-name");
-    divName.textContent=document.querySelector('input.name').value;
-    gridContainer.appendChild(divName);
+    ///// Checking if places exist ////
 
-    let divAddress= document.createElement('div');
-    divAddress.classList.add("details", "details-address");
-    divAddress.textContent=document.querySelector('input.address').value;
-    gridContainer.appendChild(divAddress);
+    if(places.length===0)
+    {
+        document.querySelector('.grid-container').style.visibility='hidden';
+        document.querySelector('.grid-container').style.display='none';
+        
+        return;
+    }
+    else
+    {
+        document.querySelector('.no-places').style.display='none';
+        document.querySelector('.no-places').style.visibility='hidden';
+    }
 
-    let divRating= document.createElement('div');
-    divRating.classList.add("details", "details-rating");
-    divRating.textContent=document.querySelector('input.rating').value;
-    gridContainer.appendChild(divRating);
-
-    let divImage= document.createElement('div');
-    divImage.classList.add("details", "details-name");
-    divImage.textContent=document.querySelector('input.picture').value;
-    gridContainer.appendChild(divImage);
+    ////// Checking part done //////
     
-    let imgFile= document.createElement('img');
-    let path=document.querySelector('input.picture').value;
-    imgFile.setAttribute("src", path);
-    divImage.appendChild(imgFile);
+    ////// Adding Heading Part //////
+    let divNameHead= document.createElement('div');
+    divNameHead.classList.add("heading", "heading-name");
+    divNameHead.textContent='NAME';
+    gridContainer.appendChild(divNameHead);
 
-    makeListVisible;
+    let divAddressHead= document.createElement('div');
+    divAddressHead.classList.add("heading", "heading-address");
+    divAddressHead.textContent='ADDRESS';
+    gridContainer.appendChild(divAddressHead);
+
+    let divRatingHead= document.createElement('div');
+    divRatingHead.classList.add("heading", "heading-rating");
+    divRatingHead.textContent='RATING';
+    gridContainer.appendChild(divRatingHead);
+
+    let divImageHead= document.createElement('div');
+    divImageHead.classList.add("heading", "heading-picture");
+    divImageHead.textContent='PICTURE';
+    gridContainer.appendChild(divImageHead);
+
+    let divActionHead= document.createElement('div');
+    divActionHead.classList.add("heading", "heading-action");
+    divActionHead.textContent='ACTIONS';
+    gridContainer.appendChild(divActionHead);
+
+    ////// Adding Heading Part Ended //////
+    let rowString='50px';
+
+    ///// Adding Items to Grid from Array Starts ////
+    for(let i=0;i<places.length;i+=4)
+    {
+        rowString+=' 4fr';
+        gridContainer.style.gridTemplateRows=rowString;
+
+    
+        let divName= document.createElement('div');
+        divName.classList.add("details", "details-name");
+        divName.textContent=places[i];
+        gridContainer.appendChild(divName);
+
+        let divAddress= document.createElement('div');
+        divAddress.classList.add("details", "details-address");
+        divAddress.textContent=places[i+1];
+        gridContainer.appendChild(divAddress);
+
+        let divRating= document.createElement('div');
+        divRating.classList.add("details", "details-rating");
+        divRating.textContent=places[i+2];
+        gridContainer.appendChild(divRating);
+
+        let divImage= document.createElement('div');
+        divImage.classList.add("details", "details-image");
+        gridContainer.appendChild(divImage);
+        
+        let imgFile= document.createElement('img');
+        let path=places[i+3];
+        imgFile.setAttribute("src", path);
+        divImage.appendChild(imgFile);
+
+        let divAction= document.createElement('div');
+        divAction.classList.add("details", "details-action");
+        gridContainer.appendChild(divAction);
+
+        let deleteButton = document.createElement('button');
+        deleteButton.classList.add("deletebtn");
+        deleteButton.textContent="Delete";
+        divAction.appendChild(deleteButton);
+
+        let updateButton = document.createElement('button');
+        updateButton.classList.add("updatebtn");
+        updateButton.textContent="Update";
+        divAction.appendChild(updateButton);
+        
+    }
+
 }
 function validateFormValues(event)
 {
@@ -62,7 +140,11 @@ function validateFormValues(event)
     let extension=parts[parts.length-1].toLowerCase();
     if(extension==="jpeg" || extension==="jpg" || extension==="png")
     {
-        addToGridView();
+        places.push(document.querySelector('input.name').value);
+        places.push(document.querySelector('input.address').value);
+        places.push(document.querySelector('input.rating').value);
+        places.push(document.querySelector('input.picture').files[0].name);
+        makeListVisible(event);
     }
     else
     {
