@@ -1,9 +1,6 @@
-let places=[];
-// let places=["Sea Beach", "Cox's Bazar", 5, "beach.jpg",
-// "Sundarban", "Khulna", 4, "tiger.jpg",
-// "Hill View", "Khagrachori", 5, "hill.jpg"];
-let rowString="50px";
 let deletebtn,updatebtn;
+let rowString       = "50px";
+let places          = [];
 let gridShown       =  false;
 let gridContainer   =  document.querySelector('.grid-container')
 let name            =  document.querySelector('input.name');
@@ -13,14 +10,21 @@ let picture         =  document.querySelector('input.picture');
 let submit          =  document.querySelector('button.submit');
 let update          =  false;
 let fromObject      =  {};
+let searchedName    =  "";
 function makeListVisible(event)
 {
+    console.log(event.target);
+    console.log(event.target.value);
     if(document.querySelector('a.gotolistpage')===event.target){
         event.preventDefault();
     }
     else if(document.querySelector('button#submit.submit')===event.target)
     {
         event.preventDefault();
+    }
+    else if(document.querySelector('input.searched-name')===event.target)
+    {
+        searchedName = event.target.value;
     }
     let grid=document.querySelector('.list-view');
     let formbox=document.querySelector('.formbox');
@@ -54,9 +58,6 @@ function removeElementFromArray(item)
             places.splice(i,1);
         }
     }
-    // let startIndex= places.indexOf(item);
-    // places.splice(startIndex,startIndex+4);
-    // console.log(startIndex,item);
 }
 function getDataFromGrid(event)
 {
@@ -110,12 +111,6 @@ function updateInGrid(event)
     update         = true;
     let data       = getDataFromGrid(event);
 
-    // filePath       = data[3];
-
-    // let parts      = filePath.split('/');
-
-    //picture.value  = data[3];
-
     rating.value     = data[2];
 
     address.value    = data[1];
@@ -127,17 +122,6 @@ function updateInGrid(event)
     fromObject.address = data[1];
 
     fromObject.rating  = data[2];
-
-    //let indexOfDetails = getRowOfDetails(data);
-    //places.splice(indexOfDetails,1);
-
-    // if(document.querySelector('button.submit').clicked === true)
-    // {
-    //     places.splice(indexOfDetails,1);
-    // }
-    //     places.splice(indexOfDetails,1);
-    //     validateFormValues();
-    // });
 
 }
 function addElementToParent(elementName, listOfClass, content, attribute, parent)
@@ -171,8 +155,9 @@ function addPlacesToGrid()
     for(let i=0;i<places.length;i++)
     {
         cnt++;
-        console.log(places[i]);
-        console.log(places.length);
+        let placeName       =    places[i].name.toLowerCase();
+        if(!placeName.includes(searchedName.toLowerCase()))
+            continue;
         gridShown           =    true;
         rowString           =    rowString + ' 4fr';
 
@@ -212,6 +197,15 @@ function addHeadingToGrid()
     let divActionHead    =    addElementToParent( 'div', ["heading", "heading-action"], 'ACTIONS', [], gridContainer );
 }
 
+function placesExistVisibilityToggle(gridVisibility, gridDisplay, headDisplay, headVisibility, searchVisibility)
+{
+    document.querySelector('.grid-container').style.visibility  =  gridVisibility;
+    document.querySelector('.grid-container').style.display     =  gridDisplay;
+    document.querySelector('.no-places').style.display          =  headDisplay;
+    document.querySelector('.no-places').style.visibility       =  headVisibility;
+    document.querySelector('.searched-name').style.visibility   =  searchVisibility;
+}
+
 function addToGridView()
 {
     while(gridContainer.childElementCount)
@@ -219,40 +213,24 @@ function addToGridView()
         gridContainer.removeChild(gridContainer.firstChild);
     }
 
-    ///// Checking if places exist ////
     if(places.length === 0)
     {
-        document.querySelector('.grid-container').style.visibility='hidden';
-        document.querySelector('.grid-container').style.display='none';
-        document.querySelector('.no-places').style.display='block';
-        document.querySelector('.no-places').style.visibility= 'visible';
-        
+        placesExistVisibilityToggle('hidden','none','block','visible','hidden');
         return;
     }
     else
     {
-        document.querySelector('.grid-container').style.visibility='visible';
-        document.querySelector('.grid-container').style.display='grid';
-        document.querySelector('.no-places').style.display='none';
-        document.querySelector('.no-places').style.visibility='hidden';
+        placesExistVisibilityToggle('visible','grid','none','hidden','visible');
     }
 
     addHeadingToGrid();
 
     addPlacesToGrid();
-    
-    // deletebtn = document.querySelectorAll('button.deletebtn');
-    // updatebtn = document.querySelectorAll('button.updatebtn');
-    // for(let i=0;i<deletebtn.length;i++)
-    // {
-    //     deletebtn[i].addEventListener('click', removeFromGrid);
-    //     updatebtn[i].addEventListener('click', updateInGrid);
-    // }
-
 }
 
 function takeActionInsideGrid(event)
 {
+    console.log(event.target);
     if(event.target.matches('button.deletebtn'))
     {
         removeFromGrid(event);
@@ -261,13 +239,11 @@ function takeActionInsideGrid(event)
     {
         updateInGrid(event);
     }
-    // deletebtn = document.querySelectorAll('button.deletebtn');
-    // updatebtn = document.querySelectorAll('button.updatebtn');
-    // for(let i=0;i<deletebtn.length;i++)
-    // {
-    //     deletebtn[i].addEventListener('click', removeFromGrid);
-    //     updatebtn[i].addEventListener('click', updateInGrid);
-    // }
+    if(event.target.matches('input.searched-name'))
+    {
+        alert('matches');
+        makeListVisible(event);
+    }
 
 }
 function replaceObjectInPlaces(placeObject)
@@ -282,6 +258,7 @@ function replaceObjectInPlaces(placeObject)
         }
     }
 }
+
 function validateFormValues(event)
 {
     event.preventDefault();
@@ -326,3 +303,5 @@ form.addEventListener('submit', validateFormValues);
 
 gridContainer.addEventListener('click', takeActionInsideGrid);
 
+let inputSearch = document.querySelector('input.searched-name');
+inputSearch.addEventListener('input',makeListVisible);

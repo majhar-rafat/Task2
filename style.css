@@ -54,7 +54,7 @@ button[type="submit"], button[type="reset"]{
     background-color: rgb(108, 176, 65);
     color:white;
 }
-.list-view{
+.list-view, span.invalid{
     visibility: hidden;
 }
 .grid-container{
@@ -105,4 +105,7 @@ a[href="newtouristplace.html"]{
     padding: 0.6em;
     background-color: rgb(255, 65, 65);
     color: white;
+}
+.searched-name{
+    width: 25%;
 }
