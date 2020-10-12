@@ -7,6 +7,7 @@ h2{
 .formbox {
     border:2px solid black;
     width: 50%;
+    transform: translate(50%, 50%);
 }
 .row{
     width: 95%;
@@ -21,6 +22,12 @@ h2{
 .col-70{
     float: left;
     width: 70%;  
+}
+#canvas{
+    height: 70px;
+    width: 70px;
+    float: right;
+    border-radius: 50%;
 }
 input{
     width: 60%;
@@ -66,6 +73,7 @@ button[type="submit"], button[type="reset"]{
     padding: 10px;
     height: 40em;
     width: 70%;
+    overflow: scroll;
 }
 .details{
     position: relative;
